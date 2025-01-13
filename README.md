@@ -71,4 +71,7 @@ https://github.com/user-attachments/assets/6a00d7f0-6f61-44ac-b7fd-7d9e1cc05c28
 <img src = "https://github.com/user-attachments/assets/d3844de8-9e16-48b3-98e6-eed492161444" height = 25% width=20%>
 <img src = "https://github.com/user-attachments/assets/743aba9a-2702-458a-b628-3fd9e3e683f2" height = 25% width=20%>
 
+## Video 📸
+https://github.com/user-attachments/assets/c73cf6be-882d-4b96-b8a6-b550308f3f06
+
 
