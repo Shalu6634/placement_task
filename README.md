@@ -63,6 +63,8 @@ https://github.com/user-attachments/assets/6a00d7f0-6f61-44ac-b7fd-7d9e1cc05c28
 - Simplified state management.
 - Smooth navigation between pages.
 
+  
+## Screenshots 📸
 
 <img src = "https://github.com/user-attachments/assets/9d483c41-bf6d-4403-836c-b326724b6b3f" height = 25% width=20%>
 <img src = "https://github.com/user-attachments/assets/010f4832-cb7a-434a-bb22-1646ed481c4e" height = 25% width=20%>
