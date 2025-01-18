@@ -1,22 +1,24 @@
+
+
 import 'package:get/get.dart';
-import 'package:placement_task/Daily_task_day2/service/storage_service.dart';
+import 'package:placement_task/Daily_task_day2/helper/storage_helper.dart';
 
-import 'helper/storage_helper.dart';
+class ApiConstants
+{
+  static const String baseUrl = 'https://dummyjson.com';
+  static const String loginEndpoint  = '/auth/login';
+  static const String usersEndpoint   = '/users';
+}
 
-class LoginController extends GetxController {
-  final AuthService _authService = AuthService();
-  var isLoading = false.obs;
+class LoginController extends GetxController
+{
+  RxBool isLoad = false.obs;
+  List userList = [];
+  Future<void> loginUser(String username,String password)
+  async {
+    isLoad = false.obs;
+     final userList =  await AuthServices.authServices.login(username, password);
 
-  Future<void> login(String username, String password) async {
-    isLoading.value = true;
-    try {
-      final user = await _authService.login(username, password);
-      await StorageHelper.saveUserDetails(user);
-      Get.offNamed('/home');
-    } catch (e) {
-      Get.snackbar('Error', e.toString());
-    } finally {
-      isLoading.value = false;
-    }
   }
+
 }

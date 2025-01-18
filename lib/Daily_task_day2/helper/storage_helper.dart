@@ -1,22 +1,25 @@
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class StorageHelper {
-  static Future<void> saveUserDetails(Map<String, dynamic> userDetails) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('userDetails', json.encode(userDetails));
-  }
+import 'package:placement_task/Daily_task_day2/controller.dart';
+import 'package:http/http.dart'as http;
+class AuthServices {
+  AuthServices._();
+  static AuthServices authServices = AuthServices._();
 
-  static Future<Map<String, dynamic>?> getUserDetails() async {
-    final prefs = await SharedPreferences.getInstance();
-    final userDetails = prefs.getString('userDetails');
-    if (userDetails != null) {
-      return json.decode(userDetails);
+  Future<void> login(String username,String password)
+  async {
+    final url = Uri.parse('${ApiConstants.baseUrl} ${ApiConstants.loginEndpoint}');
+
+    final response = await http.post(
+      url,
+      body:  json.encode({'username': username, 'password': password}),
+      headers: {'Content-Type': 'application/json'},
+    );
+    if (response.statusCode == 200) {
+      final userData = json.decode(response.body);
+      return userData;
+    } else {
+      throw Exception('Login failed: ${response.body}');
     }
-    return null;
-  }
-  static Future<void> clearUserDetails() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('userDetails');
   }
 }

@@ -1,67 +1,67 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller.dart';
+import 'package:placement_task/Daily_task_day2/controller.dart';
 
-final controller = Get.put(LoginController());
-final usernameController = TextEditingController();
-final passwordController = TextEditingController();
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+   LoginController controller = Get.put(LoginController());
+   TextEditingController userTxt = TextEditingController();
+   TextEditingController passTxt = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 4,
-        title: const Text('Login'),
+        centerTitle: true,
+        backgroundColor: Colors.teal,
+        elevation: 5,
         shadowColor: Colors.black,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 40,
-            ),
-            TextField(
-              controller: usernameController,
-              cursorColor: Colors.black,
-              decoration: const InputDecoration(
-                labelText: 'Username',
-                labelStyle: TextStyle(color: Colors.blue),
-                enabledBorder: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextField(
-              controller: passwordController,
-              cursorColor: Colors.black,
-              decoration: const InputDecoration(
-                  labelStyle: TextStyle(color: Colors.blue),
-                  labelText: 'Password',
-                  enabledBorder: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder()),
-              obscureText: true,
-            ),
-            const SizedBox(height: 20),
-            Obx(() => controller.isLoading.value
-                ? const CircularProgressIndicator()
-                : ElevatedButton(
-                    onPressed: () => controller.login(
-                      usernameController.text,
-                      passwordController.text,
-                    ),
-                    child: const Text('Login'),
-                  )),
-          ],
+        title: const Text(
+          'Login',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: Colors.white, fontSize: 24),
         ),
       ),
+      body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 10,
+            children: [
+              TextField(
+                controller: userTxt,
+                decoration: InputDecoration(
+                  labelText: 'username',
+                    labelStyle: const TextStyle(color: Colors.grey),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5))),
+              ),
+              TextField(
+                controller: passTxt,
+                decoration: InputDecoration(
+                  labelText: 'password',
+                    labelStyle: const TextStyle(color: Colors.grey),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5))),
+              ),
+              const SizedBox(height: 10,),
+              CupertinoButton(
+                color: Colors.teal,
+                child: const Text('Login',style:  TextStyle(color: Colors.white,letterSpacing: 3,fontWeight: FontWeight.bold),),
+                onPressed: () {
+                  controller.loginUser(userTxt.text, passTxt.text);
+                },
+              ),
+            ],
+          ),
+          ),
     );
   }
 }
